@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Incluye Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Sistema de Login Básico ConfiguroWeb</h1>
+                    </div>
+                    <div class="card-body">
+                        <!-- Verifica si se ha enviado el formulario y si hay un error de inicio de sesión -->
+                        <?php
+                        session_start();
+                        if (isset($_POST['username'], $_POST['password'])) {
+                            // Aquí deberías realizar tu lógica de autenticación
+                            // Si las credenciales son incorrectas, establece $_SESSION['login_error'] en true
+                            // Si las credenciales son correctas, redirige al usuario a la página de inicio
+                            // ... Tu lógica de autenticación aquí ...
+                        }
+
+                        if (isset($_SESSION['login_error']) && $_SESSION['login_error'] === true) {
+                            echo '<div class="alert alert-danger" role="alert">Usuario y/o contraseña incorrectos.</div>';
+                            $_SESSION['login_error'] = false;   
+                        }
+                        ?>
+                        <form action="autenticacion.php" method="post">
+                            <div class="form-group">
+                                <label for="username"><i class="fas fa-user"></i> Usuario</label>
+                                <input type="text" class="form-control" name="username" placeholder="Usuario" id="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i> Contraseña</label>
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Acceder</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluye Bootstrap JS (opcional, si es necesario) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
